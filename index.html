@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <head>
+    <title>Telcado en pantalla</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="css/style.css">
+
+  </head>
+  <body>
+    <!-- Desarrollemos un teclado en pantalla. Cada línea debe hacerse con un array. Al presionar cada tecla (botón) deberá mostrarse en el display.
+  La muestra estará centralizada en una sola función. Debe existir un botón para borrar el display. Agregado: Botón Backspace... -->
+  <!--   <button type="button" onclick="lasTeclas('Q')">Q</button>  El onclick llama la función lasTeclas con el parametro 'Q' que es un string-->
+  <!--   <button type="button" onclick="lasTeclas(" Q")">Q</button> El onclick llama la función lasTeclas de manera erronea-->
+  <!--   <button type="button" onclick="lasTeclas(Q)">Q</button> El onclick llama la función lasTeclas con el parametro Q que es una variable-->
+    <!--Comienza el teclado -->
+    <script>
+
+      var teclado_1 = ["Q","W","E","R","T","Y","U","I","O","P"];
+      var teclado_2 = ["A","S","D","F","G","H","J","K","L","Ñ"];
+      var teclado_3 = ["Z","X","C","V","B","N","M",",","."];
+
+      /*
+      llamar la vaiable teclado_1[0] me devuelve Q. No me devuelve "Q".
+      */
+
+      var display = "";
+
+      //Display + teclado.
+      document.write('<section><br><textarea rows="6" cols="65" id="screen" disabled="disabled"></textarea><br><br>');
+
+      //Primera fila del teclado.
+      for (var i = 0; i < teclado_1.length; i++) {
+        document.write('<button type="button" onclick="lasTeclas('+"'"+teclado_1[i]+"'"+')">'+teclado_1[i]+'</button>');
+      }
+      //Tecla para borrar "backspace <-"
+      document.write('<button type="button" id="backSpa" onclick="backSpa()"><</button>');
+
+      document.write("<br>");
+
+      //Segunda fila del teclado.
+      for (var i = 0; i < teclado_2.length; i++) {
+        document.write('<button type="button" onclick="lasTeclas('+"'"+teclado_2[i]+"'"+')">'+teclado_2[i]+'</button>');
+      }
+
+      document.write("<br>");
+
+      //Tercera fila del teclado.
+      for (var i = 0; i < teclado_3.length; i++) {
+        document.write('<button type="button" onclick="lasTeclas('+"'"+teclado_3[i]+"'"+')">'+teclado_3[i]+'</button>');
+      }
+
+      document.write('<button type="button" id="space" onclick="lasTeclas('+"'space'"+')"></button>');
+
+      document.write("</section>");
+
+      //Función al hacer click en cualquier tecla (NO incluye el backspace).
+      function lasTeclas(valor) {
+        if (valor=="space") {
+          display = display + " ";
+          document.getElementById('screen').value = display;
+        } else {
+          display = display + valor;
+          document.getElementById('screen').value = display;
+        }
+      }
+      //Función para borrar "backspace"
+      function backSpa() {
+        display = display.toString();
+        display = display.slice(0,-1);
+        if (display != "") {
+          document.getElementById('screen').value = display;
+        } else {
+          display = "";
+          document.getElementById('screen').value = display;
+        }
+      }
+
+    </script>
+  </body>
+</html>
